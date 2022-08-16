@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../Api.dart';
 import '../model/Video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'videoPage.dart';
 
 class Inicio extends StatefulWidget {
   String pesquisa;
@@ -12,6 +14,8 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  static String _idVideo = '';
+
   Future<List<Video>> _listarVideos(String pesquisa) {
     Api api = Api();
     Future<List<Video>> videos = api.pesquisar(pesquisa);
@@ -28,20 +32,29 @@ class _InicioState extends State<Inicio> {
                 itemBuilder: (BuildContext context, int index) {
                   List<Video>? videos = snapshot.data;
                   Video video = videos![index];
-                  return Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        decoration: BoxDecoration(
+                  return GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        _idVideo = video.id!;
+                        VideoPage.set_idVideo = _idVideo;
+                      });
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPage(_idVideo)));
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
 
-                          image: DecorationImage(fit: BoxFit.cover,image: NetworkImage(video.imagem.toString()))
+                            image: DecorationImage(fit: BoxFit.cover,image: NetworkImage(video.imagem.toString()))
+                          ),
                         ),
-                      ),
-                      ListTile(
-                        title: Text(video.titulo.toString()),
-                        subtitle: Text(video.canal.toString()),
-                      )
-                    ],
+                        ListTile(
+                          title: Text(video.titulo.toString()),
+                          subtitle: Text(video.canal.toString()),
+                        )
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) => const Divider(
