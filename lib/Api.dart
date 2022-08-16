@@ -1,9 +1,9 @@
+import 'auth/secrets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:youtube/model/Video.dart';
 
-const YOUTUBE_KEY_API = "AIzaSyBF0byTSFF6crgocAR-7IiiFY0k7bIK2QU";
+const YOUTUBE_KEY_API = "$SECRET_YOUTUBE_KEY_API";
 const ID_CANAL = "UCmEClzCBDx-vrt0GuSKBd9g";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
