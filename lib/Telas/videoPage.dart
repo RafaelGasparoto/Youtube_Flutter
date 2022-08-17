@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube/model/Video.dart';
+import 'package:youtube/Api.dart';
 
 class VideoPage extends StatefulWidget {
   static String _idVideo = '';
@@ -20,6 +21,14 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
+
+  String _imagemCanal(String idCanal) {
+    String urlImg;
+    Api api = Api();
+    urlImg = api.img(idCanal).toString();
+    return urlImg;
+  }
+
   final YoutubePlayerController _controller = YoutubePlayerController(
     initialVideoId: VideoPage.get_idVideo,
     flags: const YoutubePlayerFlags(
@@ -62,10 +71,11 @@ class _VideoPageState extends State<VideoPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                child: Image.network(_imagemCanal(widget.video.canal!)),
               ),
             ],
           ),
-    )
+        )
     );
   }
 }

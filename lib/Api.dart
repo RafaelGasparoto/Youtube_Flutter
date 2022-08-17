@@ -19,4 +19,18 @@ class Api {
 
     return videos;
   }
+
+  Future img(String idCanal) async{
+
+    String urlImg;
+    var url = Uri.parse("${URL_BASE}channels?part=snippet&key=$YOUTUBE_KEY_API&id=$idCanal");
+    http.Response response = await http.get(url);
+
+    Map<String, dynamic> dadosJson = json.decode(response.body);
+    print("status: ${response.body}");
+    urlImg = dadosJson["items"].toString();
+    print("status: ${urlImg}");
+
+    return urlImg;
+  }
 }
