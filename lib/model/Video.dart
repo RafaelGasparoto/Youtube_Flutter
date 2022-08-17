@@ -4,8 +4,9 @@ class Video{
   String? titulo;
   String? descricao;
   String? imagem;
+  String? canalImg;
 
-  Video({this.canal, this.id, this.titulo, this.descricao, this.imagem});
+  Video({this.canal, this.id, this.titulo, this.descricao, this.imagem, this.canalImg});
 
   factory Video.fromJson(Map<String, dynamic> json){
     return Video(
@@ -14,6 +15,7 @@ class Video{
       descricao: json["snippet"]["description"],
       imagem: json["snippet"]["thumbnails"]["high"]["url"],
       canal: json["snippet"]["channelId"],
+      canalImg: json["snippet"],
     );
   }
 }

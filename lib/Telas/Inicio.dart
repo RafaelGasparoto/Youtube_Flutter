@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Api.dart';
 import '../model/Video.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'videoPage.dart';
 
 class Inicio extends StatefulWidget {
@@ -38,7 +37,7 @@ class _InicioState extends State<Inicio> {
                         _idVideo = video.id!;
                         VideoPage.set_idVideo = _idVideo;
                       });
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPage(_idVideo)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPage(_idVideo, video)));
                     },
                     child: Column(
                       children: [
