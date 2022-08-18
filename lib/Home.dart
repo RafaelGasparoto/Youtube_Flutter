@@ -4,7 +4,8 @@ import 'package:youtube/Telas/Biblioteca.dart';
 import 'package:youtube/Telas/Criar.dart';
 import 'package:youtube/Telas/Inicio.dart';
 import 'package:youtube/Telas/Inscricoes.dart';
-import 'package:youtube/Telas/Shorts.dart';
+import 'package:youtube/shorts_icons_fill.dart';
+import 'package:youtube/shorts_icons.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,11 +20,17 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> telas = [Inicio(_resultado), Shorts(), Criar(), Incricoes(), Biblioteca()];
+    List<Widget> telas = [
+      Inicio(_resultado),
+      const Incricoes(),
+      const Criar(),
+      const Incricoes(),
+      const Biblioteca()
+    ];
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.grey,
           opacity: 1,
         ),
@@ -34,15 +41,18 @@ class _HomeState extends State<Home> {
           height: 20,
         ),
         actions: [
-          IconButton(onPressed: null, icon: Icon(Icons.cast)),
-          IconButton(onPressed: null, icon: Icon(Icons.notifications)),
-          IconButton(onPressed: ()async{
-            String? res = await showSearch(context: context, delegate: CustomSearchDelegate());
-            setState(() {
-              _resultado = res!;
-            });
-          }, icon: Icon(Icons.search)),
-          IconButton(onPressed: null, icon: Icon(Icons.account_circle)),
+          const IconButton(onPressed: null, icon: Icon(Icons.cast)),
+          const IconButton(onPressed: null, icon: Icon(Icons.notifications)),
+          IconButton(
+              onPressed: () async {
+                String? res = await showSearch(
+                    context: context, delegate: CustomSearchDelegate());
+                setState(() {
+                  _resultado = res!;
+                });
+              },
+              icon: const Icon(Icons.search)),
+          const IconButton(onPressed: null, icon: Icon(Icons.account_circle)),
         ],
       ),
       body: Container(
@@ -52,7 +62,8 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indexAtual,
         type: BottomNavigationBarType.shifting,
-        fixedColor: Colors.black,
+        fixedColor: Colors.white,
+        showUnselectedLabels: true,
         onTap: (index) {
           setState(() {
             _indexAtual = index;
@@ -61,27 +72,43 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
               label: "Início",
-              icon: Icon(Icons.home),
-              backgroundColor: Colors.redAccent),
+              icon: (_indexAtual == 0)
+                  ? const Icon(
+                      Icons.home,
+                    )
+                  : const Icon(Icons.home_outlined)),
           BottomNavigationBarItem(
-              label: "Shorts",
-              icon: Icon(Icons.home),
-              backgroundColor: Colors.amberAccent),
+            label: "Shorts",
+            icon: (_indexAtual == 1)
+                ? const Icon(
+                    ShortsFill.shortsFill,
+                  )
+                : const Icon(Shorts.shorts),
+          ),
           BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.add_circle,
-                size: 30,
-              ),
-              backgroundColor: Colors.blue),
+            label: "",
+            icon: (_indexAtual == 2)
+                ? const Icon(
+                    Icons.add_circle,
+                    size: 30,
+                  )
+                : const Icon(
+                    Icons.add_circle_outline,
+                    size: 30,
+                  ),
+          ),
           BottomNavigationBarItem(
-              label: "Inscrições",
-              icon: Icon(Icons.subscriptions),
-              backgroundColor: Colors.purple),
+            label: "Inscrições",
+            icon: (_indexAtual == 3)
+                ? const Icon(Icons.subscriptions)
+                : const Icon(Icons.subscriptions_outlined),
+          ),
           BottomNavigationBarItem(
-              label: "Biblioteca",
-              icon: Icon(Icons.folder),
-              backgroundColor: Colors.green),
+            label: "Biblioteca",
+            icon: (_indexAtual == 4)
+                ? const Icon(Icons.folder)
+                : const Icon(Icons.folder_outlined),
+          ),
         ],
       ),
     );
