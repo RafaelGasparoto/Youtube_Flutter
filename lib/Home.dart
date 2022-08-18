@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indexAtual,
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         fixedColor: Colors.white,
         showUnselectedLabels: true,
         onTap: (index) {
