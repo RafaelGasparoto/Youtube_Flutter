@@ -80,7 +80,7 @@ flutter:
     - family: ShortsFill
       fonts:
         - asset: fonts/Shorts_fill.ttf
-    - family: Shorts
+    - family: ShortsBlank
       fonts:
         - asset: fonts/Shorts.ttf
   #   - family: Schyler

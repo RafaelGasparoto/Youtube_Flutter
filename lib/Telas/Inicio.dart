@@ -27,7 +27,6 @@ class _InicioState extends State<Inicio> {
     Future<String> urlImg;
     Api api = Api();
     urlImg = api.img(idCanal);
-    print("img: ${urlImg}");
     return urlImg;
   }
 

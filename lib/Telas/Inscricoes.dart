@@ -13,7 +13,7 @@ class _IncricoesState extends State<Incricoes> {
     return Container(
       child: Center(
         child: Text(
-          "Incricoes",
+          "Incrições",
           style: TextStyle(fontSize: 25),
         ),
       ),

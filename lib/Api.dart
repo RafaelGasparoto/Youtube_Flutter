@@ -8,11 +8,23 @@ const ID_CANAL = "UCmEClzCBDx-vrt0GuSKBd9g";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {
-  Future<List<Video>> pesquisar(String pesquisa) async {
-    var url = Uri.parse(
-        "${URL_BASE}search?part=snippet&maxResults=5&order=date&key=$YOUTUBE_KEY_API&q=$pesquisa");
+  Future<List<Video>> pesquisar(String pesquisa, [String? videosRelacionadosId = '']) async {
+    late var url;
+
+    if(videosRelacionadosId!.isEmpty) {
+
+      url = Uri.parse(
+          "${URL_BASE}search?part=snippet&maxResults=5&key=$YOUTUBE_KEY_API&q=$pesquisa");
+    }else{
+      print("teste> ${videosRelacionadosId}");
+
+      url = Uri.parse(
+          "${URL_BASE}search?part=snippet&maxResults=5&key=$YOUTUBE_KEY_API&type=video&relatedToVideoId=$videosRelacionadosId");
+    }
     http.Response response = await http.get(url);
+
     Map<String, dynamic> dadosJson = json.decode(response.body);
+
     List<Video> videos = dadosJson["items"].map<Video>((map) {
       return Video.fromJson(map);
     }).toList();

@@ -3,6 +3,7 @@ import 'package:youtube/CustomSearchDelegate.dart';
 import 'package:youtube/Telas/Biblioteca.dart';
 import 'package:youtube/Telas/Criar.dart';
 import 'package:youtube/Telas/Inicio.dart';
+import 'package:youtube/Telas/Shorts.dart';
 import 'package:youtube/Telas/Inscricoes.dart';
 import 'package:youtube/shorts_icons_fill.dart';
 import 'package:youtube/shorts_icons.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     List<Widget> telas = [
       Inicio(_resultado),
-      const Incricoes(),
+      const Shorts(),
       const Criar(),
       const Incricoes(),
       const Biblioteca()
@@ -30,15 +31,10 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.grey,
-          opacity: 1,
-        ),
-        backgroundColor: Colors.white,
         title: Image.asset(
           "imagens/youtube.png",
-          width: 100,
-          height: 20,
+          width: 120,
+          height: 30,
         ),
         actions: [
           const IconButton(onPressed: null, icon: Icon(Icons.cast)),
@@ -83,7 +79,7 @@ class _HomeState extends State<Home> {
                 ? const Icon(
                     ShortsFill.shortsFill,
                   )
-                : const Icon(Shorts.shorts),
+                : const Icon(ShortsBlank.shorts),
           ),
           BottomNavigationBarItem(
             label: "",

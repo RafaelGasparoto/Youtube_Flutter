@@ -15,10 +15,10 @@
 ///
 import 'package:flutter/widgets.dart';
 
-class Shorts {
-  Shorts._();
+class ShortsBlank {
+  ShortsBlank._();
 
-  static const _kFontFam = 'Shorts';
+  static const _kFontFam = 'ShortsBlank';
   static const String? _kFontPkg = null;
 
   static const IconData shorts = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
