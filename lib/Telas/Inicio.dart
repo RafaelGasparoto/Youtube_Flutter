@@ -14,12 +14,21 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
   static String _idVideo = '';
+  late String url;
 
   Future<List<Video>> _listarVideos(String pesquisa) {
     Api api = Api();
     Future<List<Video>> videos = api.pesquisar(pesquisa);
 
     return videos;
+  }
+
+  Future<String> _imagemCanal(String idCanal) async {
+    Future<String> urlImg;
+    Api api = Api();
+    urlImg = api.img(idCanal);
+    print("img: ${urlImg}");
+    return urlImg;
   }
 
   @override
@@ -32,21 +41,27 @@ class _InicioState extends State<Inicio> {
                   List<Video>? videos = snapshot.data;
                   Video video = videos![index];
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () async {
                       setState(() {
                         _idVideo = video.id!;
                         VideoPage.set_idVideo = _idVideo;
                       });
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPage(_idVideo, video)));
+                      url = await _imagemCanal(video.canal!);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  VideoPage(_idVideo, video, url)));
                     },
                     child: Column(
                       children: [
                         Container(
                           height: 200,
                           decoration: BoxDecoration(
-
-                            image: DecorationImage(fit: BoxFit.cover,image: NetworkImage(video.imagem.toString()))
-                          ),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      NetworkImage(video.imagem.toString()))),
                         ),
                         ListTile(
                           title: Text(video.titulo.toString()),
@@ -56,7 +71,8 @@ class _InicioState extends State<Inicio> {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) => const Divider(
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(
                   height: 3,
                   color: Colors.red,
                 ),

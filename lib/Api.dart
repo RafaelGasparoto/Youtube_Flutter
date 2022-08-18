@@ -10,7 +10,7 @@ const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 class Api {
   Future<List<Video>> pesquisar(String pesquisa) async {
     var url = Uri.parse(
-        "${URL_BASE}search?part=snippet&maxResults=1&order=date&key=$YOUTUBE_KEY_API&q=$pesquisa");
+        "${URL_BASE}search?part=snippet&maxResults=5&order=date&key=$YOUTUBE_KEY_API&q=$pesquisa");
     http.Response response = await http.get(url);
     Map<String, dynamic> dadosJson = json.decode(response.body);
     List<Video> videos = dadosJson["items"].map<Video>((map) {
@@ -20,15 +20,14 @@ class Api {
     return videos;
   }
 
-  Future img(String idCanal) async{
+  Future<String> img(String idCanal) async{
 
     String urlImg;
     var url = Uri.parse("${URL_BASE}channels?part=snippet&key=$YOUTUBE_KEY_API&id=$idCanal");
     http.Response response = await http.get(url);
 
     Map<String, dynamic> dadosJson = json.decode(response.body);
-    print("status: ${response.body}");
-    urlImg = dadosJson["items"].toString();
+    urlImg = dadosJson["items"][0]["snippet"]["thumbnails"]["default"]["url"].toString();
     print("status: ${urlImg}");
 
     return urlImg;
