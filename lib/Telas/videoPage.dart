@@ -74,17 +74,28 @@ class _VideoPageState extends State<VideoPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+              padding: const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
               child: Text(
                 widget.video.descricao!,
                 style: const TextStyle(
                     fontSize: 12, fontWeight: FontWeight.normal),
               ),
             ),
+            const Divider(
+              height: 8,
+              color: Color.fromARGB(80, 128, 128, 128),
+              thickness: 5,
+            ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: Image.network(widget.url),
             ),
+            const Divider(
+                height: 8,
+                color: Color.fromARGB(80, 128, 128, 128),
+              thickness: 5,
+              ),
+
             Expanded(
               child: FutureBuilder<List<Video>>(
                   future: _listarVideos(),
@@ -110,7 +121,6 @@ class _VideoPageState extends State<VideoPage> {
                               child: Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.all(15),
                                     height: 200,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
@@ -127,9 +137,12 @@ class _VideoPageState extends State<VideoPage> {
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(
-                            height: 3,
-                            color: Colors.red,
+                          const Padding(
+                                padding: EdgeInsets.only(top: 10, bottom: 10),
+                                child: Divider(
+                                  height: 8,
+                                  color: Colors.white,
+                                ),
                           ),
                           itemCount: snapshot.data!.length,
                         )
