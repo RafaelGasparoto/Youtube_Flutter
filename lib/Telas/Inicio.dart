@@ -46,8 +46,7 @@ class _InicioState extends State<Inicio> {
                         VideoPage.set_idVideo = _idVideo;
                       });
                       url = await _imagemCanal(video.canal!);
-                      Navigator.push(
-                          context,
+                      Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   VideoPage(_idVideo, video, url)));
@@ -64,7 +63,7 @@ class _InicioState extends State<Inicio> {
                         ),
                         ListTile(
                           title: Text(video.titulo.toString()),
-                          subtitle: Text(video.canal.toString()),
+                          subtitle: Text(video.nomeCanal.toString()),
                         )
                       ],
                     ),

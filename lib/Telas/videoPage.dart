@@ -74,11 +74,50 @@ class _VideoPageState extends State<VideoPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
-              child: Text(
+                padding: const EdgeInsets.only(
+                    top: 10, left: 15, right: 15, bottom: 10),
+                child: Flexible(
+                    child: RichText(
+                  overflow: TextOverflow.visible,
+                  text: TextSpan(
+                      text: widget.video.descricao!,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.normal)),
+                )) /*Text(
                 widget.video.descricao!,
                 style: const TextStyle(
                     fontSize: 12, fontWeight: FontWeight.normal),
+              ),*/
+                ),
+            const Divider(
+              height: 8,
+              color: Color.fromARGB(80, 128, 128, 128),
+              thickness: 5,
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 2),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        widget.url,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Flexible(
+                        child: RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(text: widget.video.nomeCanal),
+                    )),
+                  ),
+                  const Text("INSCREVER-SE", style: TextStyle(color: Colors.red)),
+                ],
               ),
             ),
             const Divider(
@@ -86,16 +125,6 @@ class _VideoPageState extends State<VideoPage> {
               color: Color.fromARGB(80, 128, 128, 128),
               thickness: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.network(widget.url),
-            ),
-            const Divider(
-                height: 8,
-                color: Color.fromARGB(80, 128, 128, 128),
-              thickness: 5,
-              ),
-
             Expanded(
               child: FutureBuilder<List<Video>>(
                   future: _listarVideos(),
@@ -130,19 +159,19 @@ class _VideoPageState extends State<VideoPage> {
                                   ),
                                   ListTile(
                                     title: Text(video.titulo.toString()),
-                                    subtitle: Text(video.canal.toString()),
+                                    subtitle: Text(video.nomeCanal.toString()),
                                   )
                                 ],
                               ),
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) =>
-                          const Padding(
-                                padding: EdgeInsets.only(top: 10, bottom: 10),
-                                child: Divider(
-                                  height: 8,
-                                  color: Colors.white,
-                                ),
+                              const Padding(
+                            padding: EdgeInsets.only(top: 10, bottom: 10),
+                            child: Divider(
+                              height: 8,
+                              color: Colors.white,
+                            ),
                           ),
                           itemCount: snapshot.data!.length,
                         )
