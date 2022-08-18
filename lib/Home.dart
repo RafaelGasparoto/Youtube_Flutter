@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: telas[_indexAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(

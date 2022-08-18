@@ -70,10 +70,7 @@ class _InicioState extends State<Inicio> {
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(
-                  height: 3,
-                  color: Colors.red,
-                ),
+                    const Padding(padding: EdgeInsets.only(bottom: 15)),
                 itemCount: snapshot.data!.length,
               )
             : const Center(child: CircularProgressIndicator()));

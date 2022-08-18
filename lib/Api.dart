@@ -14,12 +14,12 @@ class Api {
     if(videosRelacionadosId!.isEmpty) {
 
       url = Uri.parse(
-          "${URL_BASE}search?part=snippet&maxResults=5&key=$YOUTUBE_KEY_API&q=$pesquisa");
+          "${URL_BASE}search?part=snippet&maxResults=20&key=$YOUTUBE_KEY_API&q=$pesquisa");
     }else{
       print("teste> ${videosRelacionadosId}");
 
       url = Uri.parse(
-          "${URL_BASE}search?part=snippet&maxResults=5&key=$YOUTUBE_KEY_API&type=video&relatedToVideoId=$videosRelacionadosId");
+          "${URL_BASE}search?part=snippet&maxResults=20&key=$YOUTUBE_KEY_API&type=video&relatedToVideoId=$videosRelacionadosId");
     }
     http.Response response = await http.get(url);
 

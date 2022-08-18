@@ -167,11 +167,7 @@ class _VideoPageState extends State<VideoPage> {
                           },
                           separatorBuilder: (BuildContext context, int index) =>
                               const Padding(
-                            padding: EdgeInsets.only(top: 10, bottom: 10),
-                            child: Divider(
-                              height: 8,
-                              color: Colors.white,
-                            ),
+                            padding: EdgeInsets.only(bottom: 17),
                           ),
                           itemCount: snapshot.data!.length,
                         )
