@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       const Shorts(),
       const Criar(),
       const Incricoes(),
-      const Biblioteca()
+      const Biblioteca(),
     ];
 
     return Scaffold(

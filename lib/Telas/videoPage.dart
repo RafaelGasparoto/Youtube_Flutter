@@ -35,7 +35,7 @@ class _VideoPageState extends State<VideoPage> {
 
   Future<List<Video>> _listarVideos() {
     Api api = Api();
-    Future<List<Video>> videos = api.pesquisar('', widget.video.id);
+    Future<List<Video>> videos = api.pesquisar(widget.video.titulo!);
 
     return videos;
   }
@@ -94,13 +94,14 @@ class _VideoPageState extends State<VideoPage> {
               color: Color.fromARGB(80, 128, 128, 128),
               thickness: 5,
             ),
-            Container(
-              padding: const EdgeInsets.only(top: 5, bottom: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
@@ -108,17 +109,35 @@ class _VideoPageState extends State<VideoPage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Flexible(
-                        child: RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(text: widget.video.nomeCanal),
+                ),
+                Column(
+                  children: [
+                    Flexible(
+                      flex: 2,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RichText(
+                            overflow: TextOverflow.ellipsis,
+                            text: TextSpan(text: widget.video.nomeCanal, style: TextStyle(fontSize: 17)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Flexible(
+                flex: 3,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: const Text("INSCREVER-SE",
+                        style: TextStyle(color: Colors.red, fontSize: 20)),
+                ),
                     )),
-                  ),
-                  const Text("INSCREVER-SE", style: TextStyle(color: Colors.red)),
-                ],
-              ),
+              ],
             ),
             const Divider(
               height: 8,
