@@ -66,11 +66,11 @@ class _VideoPageState extends State<VideoPage> {
               progressIndicatorColor: Colors.black,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, left: 15),
+              padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
               child: Text(
                 widget.video.titulo!,
                 style:
-                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -83,12 +83,7 @@ class _VideoPageState extends State<VideoPage> {
                       text: widget.video.descricao!,
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.normal)),
-                )) /*Text(
-                widget.video.descricao!,
-                style: const TextStyle(
-                    fontSize: 12, fontWeight: FontWeight.normal),
-              ),*/
-                ),
+                ))),
             const Divider(
               height: 8,
               color: Color.fromARGB(80, 128, 128, 128),
@@ -96,7 +91,6 @@ class _VideoPageState extends State<VideoPage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                   flex: 1,
@@ -110,32 +104,24 @@ class _VideoPageState extends State<VideoPage> {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                            overflow: TextOverflow.ellipsis,
-                            text: TextSpan(text: widget.video.nomeCanal, style: TextStyle(fontSize: 17)),
-                          ),
-                        ),
-                      ),
+                Flexible(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                          text: widget.video.nomeCanal,
+                          style: TextStyle(fontSize: 17)),
                     ),
-                  ],
+                  ),
                 ),
                 Flexible(
-                flex: 3,
+                    flex: 3,
                     child: Align(
                       alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: const Text("INSCREVER-SE",
-                        style: TextStyle(color: Colors.red, fontSize: 20)),
-                ),
+                      child: const Text("INSCREVER-SE",
+                          style: TextStyle(color: Colors.red, fontSize: 20)),
                     )),
               ],
             ),
